@@ -34,7 +34,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 = Installation
 
-This plugin targets Redmine 2.1:
+This plugin targets Redmine 2.1 (also compatible with Redmine 3.x):
 
 1. Copy the software to the <tt>plugins</tt> directory. Make sure that the name
    of the directory is <tt>redmine_checkout</tt>.

@@ -1,3 +1,4 @@
+<% if scm != 'Xitolite' %>
 <div>
   <p><%= setting_check_box "checkout_overwrite_description_#{scm}", :label => :setting_checkout_overwrite_description, :onclick => <<-EOF
     $($('#settings_checkout_description_#{scm}').parents('div').get(1)).slideToggle();
@@ -37,3 +38,4 @@
   </table>
   <div style="text-align: right"><%= link_to_function l(:button_add_protocol), "protocolForms['#{scm}'].add()", {:class => "icon icon-add"} %></div>
 </div>
+<% end %>

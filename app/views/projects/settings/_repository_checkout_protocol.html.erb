@@ -1,3 +1,4 @@
+<% if '#{index}' != 'Xitolite' %>
 <%
   index ||= "--INDEX--"
   classes ||= ""
@@ -17,3 +18,4 @@
   <td class="protocol_is_default"   ><%= check_box_tag "repository[checkout_protocols][#{index}][is_default]", 1, protocol.default? %></td>
   <td class="protocol_delete"       ><%= tag(:input, {:type => "image", :src => image_path("delete.png"), :onclick => "var e=$('#checkout_protocols_#{index}');var parent=e.parent(\"tbody\");e.remove();recalculate_even_odd(parent);return false"}) %></td>
 </tr>
+<% end %>

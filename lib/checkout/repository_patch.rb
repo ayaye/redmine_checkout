@@ -72,7 +72,11 @@ module Checkout
             if checkout_overwrite?
               protocols = checkout_settings['checkout_protocols'] || []
             else
-              protocols = Setting.send("checkout_protocols_#{type.demodulize}") || []
+              if "#{type.demodulize}" != 'Xitolite'
+                protocols = Setting.send("checkout_protocols_#{type.demodulize}") || []
+              else
+                protocols = []
+              end
             end
           else
             protocols = []
@@ -107,7 +111,9 @@ module Checkout
         if checkout_overwrite?
           checkout_settings['checkout_display_command']
         else
-          Setting.send("checkout_display_command_#{type.demodulize}")
+          if "#{type.demodulize}" != 'Xitolite'
+            Setting.send("checkout_display_command_#{type.demodulize}")
+          end
         end
       end
 

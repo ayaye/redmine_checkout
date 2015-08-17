@@ -1,3 +1,4 @@
+<% if '#{scm}' != 'Xitolite' %>
 <%= form_tag({:action => 'edit', :tab => 'checkout'}) do %>
 
 <%= javascript_tag do %>
@@ -9,9 +10,9 @@ $(function() {
   });
   <%
     CheckoutHelper.supported_scm.select{|scm| Setting.enabled_scm.include?(scm)}.each do |scm|
-      next if scm != 'Xitolite' && Setting.send("checkout_overwrite_description_#{scm}?")
+      next if '#{scm}' != 'Xitolite' && Setting.send("checkout_overwrite_description_#{scm}?")
   -%>
-  <% if scm != 'Xitolite' %>
+  <% if '#{scm}' != 'Xitolite' %>
   $($('#settings_checkout_description_<%= scm %>').parents('div').get(1)).hide();
   <% end %>
   <%- end %>
@@ -45,4 +46,5 @@ $(function() {
 <% content_for :header_tags do %>
   <%= javascript_include_tag 'subform', :plugin => 'redmine_checkout' %>
   <%= stylesheet_link_tag 'checkout', :plugin => 'redmine_checkout' %>
+<% end %>
 <% end %>

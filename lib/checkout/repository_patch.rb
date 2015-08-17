@@ -58,10 +58,12 @@ module Checkout
         if checkout_overwrite?
           checkout_settings['checkout_description']
         else
-          if type.present? && CheckoutHelper.supported_scm.include?(type.demodulize) && Setting.send("checkout_overwrite_description_#{type.demodulize}?")
-            Setting.send("checkout_description_#{type.demodulize}")
-          else
-            Setting.send("checkout_description_Abstract")
+          if "#{type.demodulize}" != 'Xitolite'
+            if type.present? && CheckoutHelper.supported_scm.include?(type.demodulize) && Setting.send("checkout_overwrite_description_#{type.demodulize}?")
+              Setting.send("checkout_description_#{type.demodulize}")
+            else
+              Setting.send("checkout_description_Abstract")
+            end
           end
         end
       end

@@ -31,7 +31,7 @@ $(function() {
 <p><%= setting_check_box :checkout_use_zero_clipboard %></p>
 
 <% CheckoutHelper.supported_scm.select{|scm| Setting.enabled_scm.include?(scm)}.each do |scm| -%>
-<% "#{scm}" != 'Xitolite' %>
+<% if "#{scm}" != 'Xitolite' %>
 <fieldset class="collapsible collapsed">
   <legend onclick="toggleFieldset(this);"><%= Repository.const_get(scm).scm_name %></legend>
   <div><%= render :partial => 'checkout_scm', :locals => {:scm => scm} %></div>

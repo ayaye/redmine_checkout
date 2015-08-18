@@ -3,9 +3,9 @@
   index ||= "--INDEX--"
   classes ||= ""
   style ||= index == '--INDEX--' ? "display:none" : ""
-  <% if '#{index}' != 'Xitolite' %>
-  protocol = Checkout::Protocol.new(protocol) unless protocol.is_a? Checkout::Protocol
-  <% end %>
+  if '#{index}' != 'Xitolite'
+    protocol = Checkout::Protocol.new(protocol) unless protocol.is_a? Checkout::Protocol
+  end 
 %>
 <% if '#{index}' != 'Xitolite' %>
 <tr id="<%= "checkout_protocols_#{scm}_#{index}" %>" class="<%= classes %>" style="<%= style %>">

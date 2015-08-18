@@ -1,9 +1,9 @@
 <%
   index ||= "--INDEX--"
   classes ||= ""
-  <% if '#{index}' != 'Xitolite' %>
-  protocol = Checkout::Protocol.new(protocol) unless protocol.is_a? Checkout::Protocol
-  <% end %>
+  if '#{index}' != 'Xitolite'
+    protocol = Checkout::Protocol.new(protocol) unless protocol.is_a? Checkout::Protocol
+  end
 %>
 <% if '#{index}' != 'Xitolite' %>
 <tr id="<%= "checkout_protocols_#{index}" %>" class="<%= classes %>" <%= 'style="display:none"'.html_safe if index == '--INDEX--' %>>

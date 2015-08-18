@@ -1,10 +1,11 @@
-<% if '#{index}' != 'Xitolite' %>
 <%
   index ||= "--INDEX--"
   classes ||= ""
-  
+  <% if '#{index}' != 'Xitolite' %>
   protocol = Checkout::Protocol.new(protocol) unless protocol.is_a? Checkout::Protocol
+  <% end %>
 %>
+<% if '#{index}' != 'Xitolite' %>
 <tr id="<%= "checkout_protocols_#{index}" %>" class="<%= classes %>" <%= 'style="display:none"'.html_safe if index == '--INDEX--' %>>
   <td class="protocol_protocol"   ><%= text_field_tag "repository[checkout_protocols][#{index}][protocol]", protocol.protocol, :size => 10 %></td>
   <td class="protocol_command"    ><%= text_field_tag "repository[checkout_protocols][#{index}][command]", protocol.command, :size => 15 %></td>

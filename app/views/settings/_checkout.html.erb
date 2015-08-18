@@ -1,4 +1,3 @@
-<% if (scm != 'Xitolite' || '#{scm}' != 'Xitolite') %>
 <%= form_tag({:action => 'edit', :tab => 'checkout'}) do %>
 
 <%= javascript_tag do %>
@@ -10,9 +9,9 @@ $(function() {
   });
   <%
     CheckoutHelper.supported_scm.select{|scm| Setting.enabled_scm.include?(scm)}.each do |scm|
-      next if '#{scm}' != 'Xitolite' && Setting.send("checkout_overwrite_description_#{scm}?")
+      next if "#{scm}" != 'Xitolite' || Setting.send("checkout_overwrite_description_#{scm}?")
   -%>
-  <% if '#{scm}' != 'Xitolite' %>
+  <% if "#{scm}" != 'Xitolite' %>
   $($('#settings_checkout_description_<%= scm %>').parents('div').get(1)).hide();
   <% end %>
   <%- end %>
@@ -32,10 +31,12 @@ $(function() {
 <p><%= setting_check_box :checkout_use_zero_clipboard %></p>
 
 <% CheckoutHelper.supported_scm.select{|scm| Setting.enabled_scm.include?(scm)}.each do |scm| -%>
+<% "#{scm}" != 'Xitolite' %>
 <fieldset class="collapsible collapsed">
   <legend onclick="toggleFieldset(this);"><%= Repository.const_get(scm).scm_name %></legend>
   <div><%= render :partial => 'checkout_scm', :locals => {:scm => scm} %></div>
 </fieldset>
+<% end %>
 <%- end %>
 
 </div>
@@ -46,5 +47,4 @@ $(function() {
 <% content_for :header_tags do %>
   <%= javascript_include_tag 'subform', :plugin => 'redmine_checkout' %>
   <%= stylesheet_link_tag 'checkout', :plugin => 'redmine_checkout' %>
-<% end %>
 <% end %>

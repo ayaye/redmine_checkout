@@ -1,4 +1,4 @@
-<% if '#{scm}' != 'Xitolite' %>
+<% if scm != 'Xitolite' && '#{scm}' != 'Xitolite' %>
 <%= form_tag({:action => 'edit', :tab => 'checkout'}) do %>
 
 <%= javascript_tag do %>

@@ -6,10 +6,10 @@ class RenameRenderLinkToRenderType < ActiveRecord::Migration
       Setting.plugin_redmine_checkout = Setting.plugin_redmine_checkout
     end
     
-    add_column :repositories, :render_type, :string, :default => 'url', :null => false
+    #add_column :repositories, :render_type, :string, :default => 'url', :null => false
     
-    Repository.update_all({:render_type => 'link'}, :render_link => true)
-    Repository.update_all({:render_type => 'url'}, ["render_link != ?", true])
+    #Repository.update_all({:render_type => 'link'}, :render_link => true)
+    #Repository.update_all({:render_type => 'url'}, ["render_link != ?", true])
     
     remove_column :repositories, :render_link
   end

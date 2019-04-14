@@ -1,5 +1,6 @@
 require 'redmine'
 
+Rails.logger.info "Starting Checkout plugin"
 
 Rails.configuration.to_prepare do
   require_dependency 'checkout/settings_controller_patch'
@@ -19,7 +20,7 @@ require 'checkout/view_helper'
 
 Redmine::Plugin.register :redmine_checkout do
   name 'Redmine Checkout plugin'
-  url 'https://github.com/hanjos/redmine_checkout'
+  url 'https://github.com/ayaye/redmine_checkout/'
   author 'Holger Just et al.'
   author_url 'http://meine-er.de'
   description 'Add links to the actual repository to the repository view.'

@@ -3,17 +3,14 @@ require_dependency 'settings_controller'
 module Checkout
   module SettingsControllerPatch
     def self.included(base) # :nodoc:
-      base.send(:include, InstanceMethods)
-
       base.class_eval do
+        prepend InstanceMethods
         unloadable
-      
-        alias_method_chain :edit, :checkout
       end
     end
     
     module InstanceMethods
-      def edit_with_checkout
+      def edit
         if request.post? && params['tab'] == 'checkout'
           if params[:settings] && params[:settings].is_a?(Hash)
             settings = HashWithIndifferentAccess.new
@@ -35,7 +32,7 @@ module Checkout
             params[:settings] = {}
           end
         end
-        edit_without_checkout
+        super
       end
     end
   end
